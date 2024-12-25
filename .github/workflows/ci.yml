@@ -1,6 +1,5 @@
 name: Publish Package to npmjs
 
-# Ejecutar el flujo de trabajo solo cuando haya un push a la rama 'main'
 on:
   push:
     branches:
@@ -15,31 +14,25 @@ jobs:
       id-token: write
     
     steps:
-      # Checkout el código fuente
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Configurar Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
 
-      # Instalar dependencias de Node.js
       - name: Install dependencies
         run: npm ci
 
-      # Comprobar el estilo del código con ESLint
       - name: Run ESLint
         run: npm run eslint
-        continue-on-error: false  # Esto hace que si hay errores, se detenga el flujo de trabajo
+        continue-on-error: false
 
-      # Compilar el código
       - name: Build the project
         run: npm run build
 
-      # Publicar el paquete en npm
       - name: Publish package to npm
         run: npm publish --provenance --access public
         env:
