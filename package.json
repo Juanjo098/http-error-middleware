@@ -1,0 +1,41 @@
+{
+  "name": "http-error-middleware",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "author": "Juanjo098",
+  "description": "A simple Express middleware to handle and format error messages, improving error management in your applications.",
+  "repository": {
+    "url": "https://github.com/Juanjo098/http-error-middleware"
+  },
+  "homepage": "https://github.com/Juanjo098/http-error-middleware",
+  "keywords": [
+    "express",
+    "middleware",
+    "error-handling",
+    "error-messages",
+    "error",
+    "express-middleware",
+    "error-response",
+    "api-error-handling",
+    "express-error",
+    "json-response"
+  ],
+  "scripts": {
+    "eslint": "eslint",
+    "build": "tsup"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@stylistic/eslint-plugin-js": "^2.12.1",
+    "@types/express": "^5.0.0",
+    "eslint": "^9.17.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.2"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
