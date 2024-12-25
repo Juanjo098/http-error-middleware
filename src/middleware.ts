@@ -7,6 +7,6 @@ export function httpErrorMiddleware(err: any, _req: Request, res: Response, next
     const { message, statusCode, details } = err
     res.status(statusCode).json({ message, details })
   } else {
-    next()
+    next(err)
   }
 }
