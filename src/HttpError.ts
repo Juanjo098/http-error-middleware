@@ -1,4 +1,4 @@
-import { ClientErrorCodes, ServerErrorCodes } from './enums'
+import { ClientErrorCodes, ServerErrorCodes } from '@/enums'
 
 export class HttpError extends Error {
   private constructor(message: string, public statusCode: number, public details?: object) {
