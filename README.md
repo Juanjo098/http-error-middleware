@@ -25,16 +25,18 @@ import { httpErrorMiddleware } from 'http-error-middleware'
 
 const app = express()
 
-// Define your app routes
+// Define your app routes.
 app.get('/', (req, res) => {
   res.status(200).json({ message: 'Hello world' })
 })
 
-// Use the middleware to handle errors
-app.use(httpErrorMiddleware)
-// Other middleware for handling errors can go here
+// Use the middleware to handle errors.
+app.use(httpErrorMiddleware())
+// If you want the error details to be placed at the root of the response body, set the "destructure" flag to true.
+app.use(httpErrorMiddleware({ destructure: true }))
+// Other middleware for handling errors can go here.
 
-// Start the server
+// Start the server.
 app.listen(3000, () => {
   console.log('Server running')
 })
@@ -47,7 +49,7 @@ You can throw HTTP errors anywhere in your application using the HttpError class
 ```typescript
 import { HttpError } from 'http-error-middleware'
 
-if (condition) throw HttpError.badRequest('Email and/or password are wrong')
+if (condition) HttpError.badRequest('Email and/or password are wrong')
 ```
 
 This code will throw an error that gets handled by the middleware, and the response will look like this:
@@ -66,7 +68,7 @@ If you need to send more details with the error (e.g., information about which f
 ```typescript
 import { HttpError } from 'http-error-middleware'
 
-if (condition) throw HttpError.badRequest('Email and/or password are wrong', { fieldName: "Error message", ...moreErrors })
+if (condition) HttpError.badRequest('Email and/or password are wrong', { fieldName: "Error message", ...moreErrors })
 ```
 
 This will generate a response with additional error details:
@@ -78,6 +80,17 @@ This will generate a response with additional error details:
     "fieldName": "Error message",
     "fieldName2": "Error message"
   },
+  "statusCode": 400
+}
+```
+
+If you have the "destructure" flag set, the message will be displayed like this:
+
+```json
+{
+  "message": "Email and/or password are wrong",
+  "fieldName": "Error message",
+  "fieldName2": "Error message"
   "statusCode": 400
 }
 ```
