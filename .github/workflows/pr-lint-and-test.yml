@@ -1,7 +1,10 @@
-name: Run ESLint and Tests on Pull Request to develop
+name: Run ESLint and Tests on Pull Request or Push to develop
 
 on:
   pull_request:
+    branches:
+      - develop
+  push:
     branches:
       - develop
 
