@@ -23,14 +23,21 @@
     "json-response"
   ],
   "scripts": {
+    "build": "tsup",
     "eslint": "eslint",
-    "build": "tsup"
+    "test": "jest"
   },
   "license": "MIT",
   "devDependencies": {
     "@stylistic/eslint-plugin-js": "^2.12.1",
     "@types/express": "^5.0.0",
+    "@types/jest": "^29.5.14",
+    "@types/supertest": "^6.0.2",
     "eslint": "^9.17.0",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.18.2"

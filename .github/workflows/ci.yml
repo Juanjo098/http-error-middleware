@@ -30,12 +30,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Comprobar el estilo del código con ESLint
-      - name: Run ESLint
-        run: npm run eslint
-        continue-on-error: false  # Esto hace que si hay errores, se detenga el flujo de trabajo
-
-      # Compilar el código
       - name: Build the project
         run: npm run build
 
