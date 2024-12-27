@@ -32,14 +32,43 @@ app.get('/', (req, res) => {
 
 // Use the middleware to handle errors.
 app.use(httpErrorMiddleware())
-// If you want the error details to be placed at the root of the response body, set the "destructure" flag to true.
-app.use(httpErrorMiddleware({ destructure: true }))
 // Other middleware for handling errors can go here.
 
 // Start the server.
 app.listen(3000, () => {
   console.log('Server running')
 })
+```
+
+### httpErrorMiddleware settings
+
+The middleware offers some configurations to customize the error response, which are optional.
+
+```typescript
+import express from 'express'
+
+import { httpErrorMiddleware } from 'http-error-middleware'
+
+const app = express()
+//Other Express app config
+
+app.use(httpErrorMiddleware({
+  destructure: false,
+  statusCodeOnResponse: false
+}))
+```
+
+- If you want the error details to be placed at the root of the response body, set the "destructure" flag to true.
+
+- If you want the status code sent to be in the response body, set the "statusCodeOnResponse" flag to true.
+
+The default settings is as follows:
+
+```json
+{
+  "destructure": false,
+  "statusCodeOnResponse": true
+}
 ```
 
 ### Throw Errors Where You Need Them
@@ -57,7 +86,7 @@ This code will throw an error that gets handled by the middleware, and the respo
 ```json
 {
   "message": "Email and/or password are wrong",
-  "statusCode": 400
+  "statusCode": 400 // This property will be removed this if you set the "statusCodeOnResponse" flag to false.
 }
 ```
 
@@ -80,7 +109,7 @@ This will generate a response with additional error details:
     "fieldName": "Error message",
     "fieldName2": "Error message"
   },
-  "statusCode": 400
+  "statusCode": 400 // This property will be removed this if you set the "statusCodeOnResponse" flag to false.
 }
 ```
 
@@ -90,8 +119,8 @@ If you have the "destructure" flag set, the message will be displayed like this:
 {
   "message": "Email and/or password are wrong",
   "fieldName": "Error message",
-  "fieldName2": "Error message"
-  "statusCode": 400
+  "fieldName2": "Error message",
+  "statusCode": 400 // This property will be removed this if you set the "statusCodeOnResponse" flag to false.
 }
 ```
 

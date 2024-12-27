@@ -4,8 +4,15 @@ import type { Express } from 'express'
 import { httpErrorMiddleware } from '@/middleware'
 import { HttpError } from '@/HttpError'
 
-export default function app(destructure: boolean): Express {
+interface AppProps {
+  destructure: boolean
+  statusCodeOnResponse: boolean
+}
+
+export default function app(options: Partial<AppProps> = {}): Express {
   const app = express()
+
+  const { destructure, statusCodeOnResponse } = options
 
   app.get('/bad-request', () => {
     HttpError.badRequest('Bad Request', { detailsMessage: 'This are important details' })
@@ -46,13 +53,33 @@ export default function app(destructure: boolean): Express {
   app.get('/conflict', () => {
     HttpError.conflict('Conflict', { detailsMessage: 'This are important details' })
   })
+  
+  app.get('/internal-server-error', () => {
+    HttpError.internalServerError('Internal server error', { detailsMessage: 'This are important details' })
+  })
+  
+  app.get('/not-implemented', () => {
+    HttpError.notImplemented('Not implemented', { detailsMessage: 'This are important details' })
+  })
+  
+  app.get('/bad-gateway', () => {
+    HttpError.badGateway('Bad gateway', { detailsMessage: 'This are important details' })
+  })
+  
+  app.get('/service-unavailable', () => {
+    HttpError.serviceUnavailable('Service unavailable', { detailsMessage: 'This are important details' })
+  })
+  
+  app.get('/gateway-timeout', () => {
+    HttpError.gatewayTimeout('Gateway Timeout', { detailsMessage: 'This are important details' })
+  })
 
   app.get('/custom', (req, _res) => {
     const { statusCode } = req.query
     HttpError.custom('Custom error', Number(statusCode), { detailsMessage: 'This are important details' })
   })
 
-  app.use(httpErrorMiddleware({ destructure }))
+  app.use(httpErrorMiddleware({ destructure, statusCodeOnResponse }))
 
   return app
 }

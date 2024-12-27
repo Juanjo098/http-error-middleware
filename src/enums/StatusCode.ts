@@ -24,5 +24,5 @@ export enum ServerErrorCodes {
   notImplemented = 501,
   badGateway = 502,
   serviceUnavailable = 503,
-  gatewayTimeOut = 504,
+  gatewayTimeout = 504,
 }
