@@ -27,6 +27,31 @@ export default function app(destructure: boolean): Express {
     HttpError.notFound('Not found', { detailsMessage: 'This are important details' })
   })
 
+  app.get('/method-not-allowed', () => {
+    HttpError.methodNotAllowed('Method not allowed', { detailsMessage: 'This are important details' })
+  })
+
+  app.get('/not-acceptable', () => {
+    HttpError.notAcceptable('Not acceptable', { detailsMessage: 'This are important details' })
+  })
+
+  app.get('/proxy-authentication-requerid', () => {
+    HttpError.proxyAuthenticationRequired('Proxy authentication required', { detailsMessage: 'This are important details' })
+  })
+
+  app.get('/request-timeout', () => {
+    HttpError.requestTimeOut('Request timeout', { detailsMessage: 'This are important details' })
+  })
+
+  app.get('/conflict', () => {
+    HttpError.conflict('Conflict', { detailsMessage: 'This are important details' })
+  })
+
+  app.get('/custom', (req, _res) => {
+    const { statusCode } = req.query
+    HttpError.custom('Custom error', Number(statusCode), { detailsMessage: 'This are important details' })
+  })
+
   app.use(httpErrorMiddleware({ destructure }))
 
   return app
