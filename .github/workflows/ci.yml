@@ -1,4 +1,4 @@
-name: Publish Package to npmjs
+name: Publish Package to npm
 
 # Ejecutar el flujo de trabajo solo cuando haya un push a la rama 'main'
 on:
