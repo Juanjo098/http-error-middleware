@@ -63,8 +63,8 @@ export class HttpError extends Error {
     throw new HttpError(message, ServerErrorCodes.serviceUnavailable, details)
   }
 
-  static gatewayTimeOut(message: string, details?: object) {
-    throw new HttpError(message, ServerErrorCodes.gatewayTimeOut, details)
+  static gatewayTimeout(message: string, details?: object) {
+    throw new HttpError(message, ServerErrorCodes.gatewayTimeout, details)
   }
 
   /**
