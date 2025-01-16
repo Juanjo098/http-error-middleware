@@ -1,8 +1,7 @@
 {
   "name": "http-error-middleware",
-  "version": "0.0.7",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "version": "0.0.8",
+  "main": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "author": "Juanjo098",
   "description": "A simple Express middleware to handle and format error messages, improving error management in your applications.",
