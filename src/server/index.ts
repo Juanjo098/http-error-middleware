@@ -15,68 +15,68 @@ export default function app(options: Partial<AppProps> = {}): Express {
   const { destructure, statusCodeOnResponse } = options
 
   app.get('/bad-request', () => {
-    HttpError.badRequest('Bad Request', { detailsMessage: 'This are important details' })
+    throw HttpError.badRequest('Bad Request', { detailsMessage: 'This are important details' })
   })
 
   app.get('/unauthorized', () => {
-    HttpError.unauthorized('Unauthorized', { detailsMessage: 'This are important details' })
+    throw HttpError.unauthorized('Unauthorized', { detailsMessage: 'This are important details' })
   })
 
   app.get('/payment-required', () => {
-    HttpError.paymentRequired('Payment required', { detailsMessage: 'This are important details' })
+    throw HttpError.paymentRequired('Payment required', { detailsMessage: 'This are important details' })
   })
 
   app.get('/forbidden', () => {
-    HttpError.forbidden('Forbidden', { detailsMessage: 'This are important details' })
+    throw HttpError.forbidden('Forbidden', { detailsMessage: 'This are important details' })
   })
 
   app.get('/not-found', () => {
-    HttpError.notFound('Not found', { detailsMessage: 'This are important details' })
+    throw HttpError.notFound('Not found', { detailsMessage: 'This are important details' })
   })
 
   app.get('/method-not-allowed', () => {
-    HttpError.methodNotAllowed('Method not allowed', { detailsMessage: 'This are important details' })
+    throw HttpError.methodNotAllowed('Method not allowed', { detailsMessage: 'This are important details' })
   })
 
   app.get('/not-acceptable', () => {
-    HttpError.notAcceptable('Not acceptable', { detailsMessage: 'This are important details' })
+    throw HttpError.notAcceptable('Not acceptable', { detailsMessage: 'This are important details' })
   })
 
   app.get('/proxy-authentication-requerid', () => {
-    HttpError.proxyAuthenticationRequired('Proxy authentication required', { detailsMessage: 'This are important details' })
+    throw HttpError.proxyAuthenticationRequired('Proxy authentication required', { detailsMessage: 'This are important details' })
   })
 
   app.get('/request-timeout', () => {
-    HttpError.requestTimeOut('Request timeout', { detailsMessage: 'This are important details' })
+    throw HttpError.requestTimeOut('Request timeout', { detailsMessage: 'This are important details' })
   })
 
   app.get('/conflict', () => {
-    HttpError.conflict('Conflict', { detailsMessage: 'This are important details' })
+    throw HttpError.conflict('Conflict', { detailsMessage: 'This are important details' })
   })
   
   app.get('/internal-server-error', () => {
-    HttpError.internalServerError('Internal server error', { detailsMessage: 'This are important details' })
+    throw HttpError.internalServerError('Internal server error', { detailsMessage: 'This are important details' })
   })
   
   app.get('/not-implemented', () => {
-    HttpError.notImplemented('Not implemented', { detailsMessage: 'This are important details' })
+    throw HttpError.notImplemented('Not implemented', { detailsMessage: 'This are important details' })
   })
   
   app.get('/bad-gateway', () => {
-    HttpError.badGateway('Bad gateway', { detailsMessage: 'This are important details' })
+    throw HttpError.badGateway('Bad gateway', { detailsMessage: 'This are important details' })
   })
   
   app.get('/service-unavailable', () => {
-    HttpError.serviceUnavailable('Service unavailable', { detailsMessage: 'This are important details' })
+    throw HttpError.serviceUnavailable('Service unavailable', { detailsMessage: 'This are important details' })
   })
   
   app.get('/gateway-timeout', () => {
-    HttpError.gatewayTimeout('Gateway Timeout', { detailsMessage: 'This are important details' })
+    throw HttpError.gatewayTimeout('Gateway Timeout', { detailsMessage: 'This are important details' })
   })
 
   app.get('/custom', (req, _res) => {
     const { statusCode } = req.query
-    HttpError.custom('Custom error', Number(statusCode), { detailsMessage: 'This are important details' })
+    throw HttpError.custom('Custom error', Number(statusCode), { detailsMessage: 'This are important details' })
   })
 
   app.use(httpErrorMiddleware({ destructure, statusCodeOnResponse }))
