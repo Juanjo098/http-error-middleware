@@ -78,7 +78,7 @@ You can throw HTTP errors anywhere in your application using the HttpError class
 ```typescript
 import { HttpError } from 'http-error-middleware'
 
-if (condition) throw HttpError.badRequest('Email and/or password are wrong')npm
+if (condition) throw HttpError.badRequest('Email and/or password are wrong')
 ```
 
 This code will throw an error that gets handled by the middleware, and the response will look like this:
